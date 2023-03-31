@@ -8,6 +8,8 @@ const destinos = [
 
 const paises = buscarPaises(destinos)
 
+let destinoSeleccionado
+
 function buscarPaises(destinos){
     const paisesEncontrados = []
     for (pais of destinos){
@@ -28,10 +30,13 @@ function elegirPais (){
 
 function elegirDestino(e){
     const destinoElegido = e.target.value
-    console.log(destinoElegido)
+    destinoSeleccionado = destinos.find((destinos)=>destinos.destino === destinoElegido)
+    console.log(destinoSeleccionado)
 }
 
 elegirPais()
+
+
 
 function crearSelect(tipoSelect,contenedor,array,idSelect){
     let select = document.createElement("select")
@@ -82,7 +87,7 @@ function elegirDias (){
 }
 
 function elegirEstadia(e){
-    const diasElegidos = e.target.value
+    const diasElegidos = parseInt(e.target.value)
     console.log(diasElegidos)
 }
 
@@ -125,7 +130,7 @@ function elegirPasajeros (){
 }
 
 function elegirPersonas(e){
-    const personasElegidas = e.target.value
+    const personasElegidas = parseInt(e.target.value)
     console.log(personasElegidas)
 }
 
@@ -162,8 +167,11 @@ function elegirHotel (){
 
 function elegirHoteles(e){
     const hotelElegido = e.target.value
-    console.log(hotelElegido)
+    hotelSeleccionado = hoteles.find((hoteles)=>hoteles.categoria === hotelElegido)
+    console.log(hotelSeleccionado)
 }
+
+
 
 elegirHotel()
 
@@ -196,15 +204,28 @@ function elegirExcursion (){
 
 function elegirExc(e){
     const excElegida = e.target.value
-    console.log(excElegida)
+    excSeleccionada = excursiones.find((excursiones)=>excursiones.excursion === excElegida)
+    console.log(excSeleccionada)
 }
 
 elegirExcursion()
 
+function confirmarCotizacion(){
+    let botonEnviar = getElementById("cotizar")
+    botonEnviar.addEventListener("click",mostrarPrecio)
+}
+
+function mostrarPrecio(){
+    if(destinoSeleccionado){
+        let multiplica = destinoSeleccionado.precio * diasElegidos * personasElegidas
+        console.log(multiplica)
+    }else{
+        alert("Por favor seleccione todos los datos solicitados")
+    }
+}
 
 
-
-
+mostrarPrecio()
 
 
 
