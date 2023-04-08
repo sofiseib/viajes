@@ -7,7 +7,7 @@
 }
 
 .intro{
-    background-color: rgb(18, 18, 218);
+    background-color: rgba(0, 0, 255, 0.281);
     padding: 20px;
 }
 .intro h1{
@@ -25,4 +25,25 @@
 .info .img1{
     align-content: center;
     width: 450px;
+}
+.viaje{
+    text-align: center;
+    background-color: rgba(180, 187, 252, 0.479);
+}
+.boton{
+    width: 80px;
+    height: 30px;
+    background-color: rgb(255, 255, 255);
+    
+}
+.boton:hover{
+    background-color: rgba(0, 0, 255, 0.459);
+}
+.result{
+    background-color: rgba(0, 0, 255, 0.363);
+    color: white;
+}
+.mail{
+    align-items: center;
+    width: 400px;
 }
