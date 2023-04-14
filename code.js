@@ -1,12 +1,15 @@
-// Acá se elige el destino
+// Acá se elige el destino, el valor del vuelo
 const destinos = [
-    {destino:"francia",precio:"120000"},
-    {destino:"españa",precio:"125000"},
-    {destino:"italia",precio:"115000"},
-    {destino:"amsterdam",precio:"145000"}
+    {destino:"francia",precio:300000},
+    {destino:"españa",precio:350000},
+    {destino:"italia",precio:400000},
+    {destino:"amsterdam",precio:450000}
 ]
 
 const paises = buscarPaises(destinos)
+
+let destinoSeleccionado
+
 
 function buscarPaises(destinos){
     const paisesEncontrados = []
@@ -18,38 +21,20 @@ function buscarPaises(destinos){
 
 console.log(paises)
 
-let contenedorPais = document.getElementById("pais")
-crearSelect("su destino", contenedorPais,paises,"selectDestino")
+
 
 function elegirPais (){
     const selectDestino = document.getElementById("selectDestino")
     selectDestino.addEventListener("change",elegirDestino)
 }
 
+
 function elegirDestino(e){
-    const destinoElegido = e.target.value
-    console.log(destinoElegido)
+    let destinoElegido = e.target.value
+    destinoSeleccionado = destinos.find((destinos)=>destinos.destino === destinoElegido)
+    console.log(destinoSeleccionado);
+
 }
-
-elegirPais()
-
-function crearSelect(tipoSelect,contenedor,array,idSelect){
-    let select = document.createElement("select")
-    select.innerHTML = `
-    <option value="">Seleccione ${tipoSelect} </option>
-    ${
-        array.map((element)=>{
-            return(
-            `<option value=${element}>${element}</option>`
-            )
-        })
-
-    }
-    `
-    select.setAttribute("id",idSelect)
-    contenedor.append(select)
-}
-
 
 // Acá se selecciona la estadia
 const estadia = [
@@ -64,6 +49,8 @@ const estadia = [
 
 const cantidadDias = buscarDias(estadia)
 
+let diasElegidos
+
 function buscarDias(estadia){
     const diasEncontrados = []
     for(dia of estadia){
@@ -73,8 +60,7 @@ function buscarDias(estadia){
 }
 console.log(cantidadDias)
 
-let contenedorDias = document.getElementById("cantidad-dias")
-crearSelect("la cantidad de dias",contenedorDias,cantidadDias,"selectDias")
+
 
 function elegirDias (){
     const Dias = document.getElementById("selectDias")
@@ -82,12 +68,9 @@ function elegirDias (){
 }
 
 function elegirEstadia(e){
-    const diasElegidos = e.target.value
+    diasElegidos = parseInt(e.target.value)
     console.log(diasElegidos)
 }
-
-elegirDias()
-
 
 
 // Aca se selecciona la cantidad de pasajeros
@@ -106,6 +89,8 @@ const pasajeros = [
 
 const cantidadPasajeros = buscarPasajeros(pasajeros)
 
+let personasElegidas
+
 function buscarPasajeros(pasajeros){
     const pasajerosEncontrados = []
     for(viajeros of pasajeros){
@@ -116,8 +101,6 @@ function buscarPasajeros(pasajeros){
 
 console.log(cantidadPasajeros)
 
-let contenedorPasajeros = document.getElementById("cantidad-pasajeros")
-crearSelect("la cantidad de pasajeros",contenedorPasajeros,cantidadPasajeros,"selectPasajeros")
 
 function elegirPasajeros (){
     const selectPasajeros = document.getElementById("selectPasajeros")
@@ -125,23 +108,22 @@ function elegirPasajeros (){
 }
 
 function elegirPersonas(e){
-    const personasElegidas = e.target.value
+    personasElegidas = parseInt(e.target.value)
     console.log(personasElegidas)
 }
-
-elegirPasajeros()
-
 
 
 // Acá se selecciona la categoría del hotel
 
 const hoteles = [
-    {categoria:"basica",precio:30000},
-    {categoria:"intermedia",precio:45000},
-    {categoria:"superior",precio:55000}
+    {categoria:"basica",precio:10000},
+    {categoria:"intermedia",precio:20000},
+    {categoria:"superior",precio:30000}
 ]
 
 const categorias = buscarCategorias(hoteles)
+
+let hotelSeleccionado
 
 function buscarCategorias(hoteles){
     const categoriasEncontradas = []
@@ -152,8 +134,6 @@ function buscarCategorias(hoteles){
 }
 console.log(categorias)
 
-let contenedorCategorias = document.getElementById("categoria-hotel")
-crearSelect("la categoria",contenedorCategorias,categorias,"selectHotel")
 
 function elegirHotel (){
     const selectHotel = document.getElementById("selectHotel")
@@ -161,11 +141,12 @@ function elegirHotel (){
 }
 
 function elegirHoteles(e){
-    const hotelElegido = e.target.value
-    console.log(hotelElegido)
+    hotelElegido = e.target.value
+    hotelSeleccionado = hoteles.find((hoteles)=>hoteles.categoria === hotelElegido)
+    console.log(hotelSeleccionado)
 }
 
-elegirHotel()
+
 
 // Acá se selecciona la cantidad de excursiones
 
@@ -177,6 +158,8 @@ const excursiones = [
 
 const tipoExcursion = buscarExcursiones(excursiones)
 
+let excSeleccionada
+
 function buscarExcursiones(excursiones){
     const excursionesEncontradas = []
     for(tipo of excursiones){
@@ -186,131 +169,146 @@ function buscarExcursiones(excursiones){
 }
 console.log(tipoExcursion)
 
-let contenedorExcursiones = document.getElementById("categoria-exc")
-crearSelect("el tipo de excursion",contenedorExcursiones,tipoExcursion,"selectExc")
 
 function elegirExcursion (){
     const selectExc = document.getElementById("selectExc")
     selectExc.addEventListener("change",elegirExc)
 }
 
+
 function elegirExc(e){
-    const excElegida = e.target.value
-    console.log(excElegida)
+    excElegida = e.target.value
+    excSeleccionada = excursiones.find((excursiones)=>excursiones.excursion === excElegida)
+    console.log(excSeleccionada)
 }
+
+
+let botonEnviar = document.getElementById("cotizar")
+botonEnviar.addEventListener("click",mostrarPrecio)
+
+
+function mostrarPrecio(){
+    localStorage.setItem("viaje", JSON.stringify({destinoSeleccionado,diasElegidos,personasElegidas,hotelSeleccionado,excSeleccionada}))
+    if(destinoSeleccionado){
+        let timerInterval
+        Swal.fire({
+            title: 'Estamos cotizando su viaje!',
+            html: 'Solo nos tomará unos segundos',
+            timer: 2000,
+            timerProgressBar: true,
+            didOpen: () => {
+            Swal.showLoading()
+            const b = Swal.getHtmlContainer().querySelector('b')
+            timerInterval = setInterval(() => {
+                b.textContent = Swal.getTimerLeft()
+              }, 100)
+            },
+            willClose: () => {
+              clearInterval(timerInterval)
+            }
+          }).then((result) => {
+            if (result.dismiss === Swal.DismissReason.timer) {
+              console.log('I was closed by the timer')
+            }
+          })
+          setTimeout(() => {
+        let multiplica = destinoSeleccionado.precio + (diasElegidos * personasElegidas * hotelSeleccionado.precio) + excSeleccionada.precio
+        let contenedorCotizar = document.getElementById("resultado")
+        let cotizacion = document.createElement("div")
+        cotizacion.innerHTML = `
+        el precio de su viaje a ${destinoSeleccionado.destino} por ${diasElegidos} días, para ${personasElegidas} personas, con una estadía 
+       ${hotelSeleccionado.categoria} y una excursión ${excSeleccionada.excursion} es de: ${multiplica} `
+       contenedorCotizar.append(cotizacion);
+        console.log (multiplica)
+        }, 2000);
+
+        let confirmar = document.getElementById("confirmar")
+        confirmar.addEventListener("click",mensajeConfirmar)
+        
+        function mensajeConfirmar(){
+            Swal.fire({
+                icon: 'success',
+                title: 'Viaje confirmado!',
+                text: 'Te llegará un mail con toda la información',
+            })
+        }
+
+        let cancelar = document.getElementById("cancelar")
+        cancelar.addEventListener("click",cancelacion)
+
+        function cancelacion(){
+            Swal.fire({
+                title: 'Estás seguro que quieres cancelar este viaje?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sí, eliminar viaje'
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  Swal.fire(
+                    'Cancelado!',
+                    'Su viaje ha sido cancelado.',
+                    'success'
+                  )
+                }
+              })
+        }
+    }
+    
+}
+
+// Aca se crea el select de cada uno 
+let contenedorPais = document.getElementById("pais")
+crearSelect("su destino", contenedorPais,paises,"selectDestino")
+
+let contenedorDias = document.getElementById("cantidad-dias")
+crearSelect("la cantidad de dias",contenedorDias,cantidadDias,"selectDias")
+
+let contenedorPasajeros = document.getElementById("cantidad-pasajeros")
+crearSelect("la cantidad de pasajeros",contenedorPasajeros,cantidadPasajeros,"selectPasajeros")
+
+let contenedorCategorias = document.getElementById("categoria-hotel")
+crearSelect("la categoria",contenedorCategorias,categorias,"selectHotel")
+
+let contenedorExcursiones = document.getElementById("categoria-exc")
+crearSelect("el tipo de excursion",contenedorExcursiones,tipoExcursion,"selectExc")
+
+
+function crearSelect(tipoSelect,contenedor,array,idSelect){
+    let select = document.createElement("select")
+    select.innerHTML = `
+    <option value="">Seleccione ${tipoSelect} </option>
+    ${
+        array.map((element)=>{
+            return(
+            `<option value=${element}>${element}</option>`
+            )
+        })
+
+    }
+    `
+    select.setAttribute("id",idSelect)
+    contenedor.append(select)
+}
+
+elegirPais()
+
+elegirDias()
+
+elegirPasajeros()
+
+elegirHotel()
 
 elegirExcursion()
 
+// Obtengo datos del localStorage
 
+viajeLocal = localStorage.getItem("viaje")
+console.log(viajeLocal)
 
-
-
-
-
-
-
-
-
-
-// function confirmarViaje(){
-//     let botonConfirmar = document.getElementById("confirmar")
-//     botonConfirmar.addEventListener(`click`,mostrarPrecio)
-// }
-
-
-
-// function elegirDias (){
-//     const selectDias = document.getElementById("selectDias")
-//     selectDias.addEventListener("change",elegirEstadia)
-// }
-
-// function elegirEstadia(e){
-//     const diasElegidos = e.target.value
-//     console.log(diasElegidos)
-// }
-
-// elegirDias()
-
-
-
-
-
-
-// const viajeTotal = []
-
-// for (let viaje = 0; viaje < 2; viaje++){
-//     if (destino1[viaje] === "francia"){
-//         let multiplica = cantidadPasajeros * destino1[1] * cantidadDias
-//         viajeTotal.push(multiplica)
-//         alert("su viaje sin estadía costará: " + multiplica);
-//     } else if (destino2[viaje] === "españa"){
-//             let multiplica = cantidadPasajeros * destino2[1] * cantidadDias
-//             viajeTotal.push(multiplica)
-//             alert("su viaje sin estadía costará: " + multiplica);
-//     }else if (destino3[viaje] === "italia"){
-//         let multiplica = cantidadPasajeros * destino3[1] * cantidadDias
-//         viajeTotal.push(multiplica)
-//         alert("su viaje sin estadía costará: " + multiplica);
-//     }else if (destino4[viaje] === "amsterdam"){
-//         let multiplica = cantidadPasajeros * destino4[1] * cantidadDias
-//         viajeTotal.push(multiplica)
-//         alert("su viaje sin estadía costará: " + multiplica);
-// }
-// }
-// // fin 
-
-
-// // Acá se elige el tipo de hotel 
-
-// let elegirHotel = prompt("Elija el tipo de hotel: basico, intermedio o superior");
-
-// let hotel1 = [ "basico", 15000];
-// let hotel2 = ["intermedio", 25000];
-// let hotel3 = ["superior", 35000];
-
-// const hotelValor = []
-
-// for (let hotel = 0; hotel < 2; hotel++){
-//     if (hotel1[hotel] === "basico"){
-//         let multiplica = hotel1[1] * cantidadPasajeros * cantidadDias
-//         hotelValor.push(multiplica)
-//         alert("La estadía costará " + multiplica);
-//     }else if (hotel2[hotel] === "intermedio"){
-//         let multiplica = hotel2[1] * cantidadPasajeros * cantidadDias
-//         hotelValor.push(multiplica)
-//         alert("La estadía costará " + multiplica);
-//     } else if (hotel3[hotel] === "superior"){
-//         let multiplica = hotel3[1] * cantidadPasajeros * cantidadDias
-//         hotelValor.push(multiplica)
-//         alert("La estadía costará " + multiplica);
-// }
-// }
-// // fin tipo de hotel 
-
-// // Acá se calcula el valor total del viaje 
-
-// const totalFinal = [viajeTotal, hotelValor];
-
-// function sumar(array){
-//     for (const totales of array){
-//         let sumaFinal = parseInt(viajeTotal) + parseInt(hotelValor)
-//         alert("El total de su viaje es: "+ sumaFinal);
-//     }
-// }
-
-// sumar(totalFinal)
-
-
-
-// // Acá hace un resumen del viaje 
-
-// let nombresDePasajeros = prompt("Ingrese los nombres de los pasajeros:");
-// let nombresPasajeros = [nombresDePasajeros];
-
-// function resumen (nombres){
-//     for (const nombresAAgregar of nombres){
-//         alert("Felicitaciones " + nombres + " , ha reservado exitosamente su viaje!")
-//     } 
-// }
-
-// resumen(nombresDePasajeros)
+if(viajeLocal){
+    viajeLocal = JSON.parse(viajeLocal)
+    console.log(viajeLocal)
+    mostrarPrecio()
+}
