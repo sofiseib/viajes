@@ -47,6 +47,10 @@
                 <li>Elegí la cantidad de excursiones</li>
                 <li>Y a disfrutar tu viaje!</li>
             </ol>
+            <div class="mail">
+                <label for="email">Inserte su email</label>
+                <input type="email" class="form-control" id="email" placeholder="name@example.com" required><br>
+            </div>
             </main>
             <aside class="col-lg-6 col-md-12 col-sm-12">
                 <img class="img1" src="/imagenes/avion.jpg">
@@ -54,7 +58,16 @@
             </div>
         </div>
     </div>
+<div class="temperatura_clima">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 temp" id="temperatura">
+            <h4>Temperatura actual de las ciudades</h4>
+    </div>
 
+<div class="container-fluid">
+    <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 viaje">
     <div id="pais">
         <h4>Armá tu viaje</h4>
         <p>1° paso: Seleccioná a qué país queres viajar</p>
@@ -67,17 +80,32 @@
         <p>3° paso: Seleccioná la cantidad de pasajeros</p>
     </div><br>
     
-   <div id="categoria-hotel">
+    <div id="categoria-hotel">
     <p>4° paso: Elegí la categoría del hotel</p>
-   </div> <br>
+    </div> <br>
 
-   <div id="categoria-exc">
+    <div id="categoria-exc">
     <p>5° paso: Elegí qué tipo de excursion querés realizar</p>
-   </div> <br>
+    </div> <br>
 
-   <button id="cotizar" type="button">Cotizar</button>
-</body>
-<script src="code.js">
+    <button class="boton" id="cotizar" type="button">Cotizar</button><br><br>
 
-</script>
+    <div class="result" id="resultado"></div><br>
+
+    <button class="boton" id="confirmar" type="button">Confirmar</button>
+    <button class="boton" id="cancelar" type="button">Cancelar</button>
+</div>
+    </div>
+</div>
+
+<footer class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 footer">
+    <p>Todos los derechos reservados</p>
+        </div>
+    </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="code.js"></script>
+<script src="api.js"></script>
 </html>
